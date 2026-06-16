@@ -1,0 +1,329 @@
+/* styles.css — Instagram mobile mock. Calibrated to the real IG app:
+   4:5 feed tiles, 1.5px grid gaps, IG type scale & spacing. */
+
+:root {
+  --ig-bg: #ffffff;
+  --ig-fg: #000000;
+  --ig-secondary: #737373;   /* IG secondary text grey */
+  --ig-sep: #dbdbdb;         /* hairline separators */
+  --ig-sep-soft: #efefef;
+  --ig-blue: #0095f6;        /* primary action blue */
+  --ig-blue-press: #1877f2;
+  --ig-grey-btn: #efefef;    /* secondary button fill */
+  --ig-red: #ed4956;
+  --grid-gap: 1.5px;         /* spec: ~1.5px gaps */
+  --tile-ratio: 4 / 5;       /* spec: 4:5 portrait tiles */
+  --story-grad: linear-gradient(45deg, #f9ce34 0%, #ee2a7b 45%, #6228d7 100%);
+  --header-h: 44px;
+  --nav-h: 49px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: var(--font);
+  background: #0b0b0d;
+  color: var(--ig-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 28px;
+  gap: 28px;
+}
+
+/* ---------- Two-pane workspace ---------- */
+.workspace { display: flex; gap: 32px; align-items: flex-start; }
+
+.controls-pane {
+  width: 340px;
+  min-height: 760px;
+  border: 1.5px dashed #34343a;
+  border-radius: 18px;
+  color: #8a8a93;
+  background: #131316;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.controls-pane h2 { font-size: 15px; color: #c9c9d1; margin: 0 0 6px; letter-spacing: .2px; }
+.controls-pane .ph-tag {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px;
+  color: #5b5b66; margin-bottom: 20px;
+}
+.controls-pane .ph-note { font-size: 13px; line-height: 1.6; color: #6f6f7a; }
+.controls-pane .ph-skeleton { margin-top: auto; display: grid; gap: 12px; }
+.controls-pane .sk { height: 38px; border-radius: 8px; background: #1c1c21; }
+.controls-pane .sk.tall { height: 96px; }
+
+/* ---------- Phone device frame ---------- */
+.device {
+  width: 390px;
+  height: 844px;
+  background: #000;
+  border-radius: 54px;
+  padding: 12px;
+  box-shadow: 0 0 0 2px #1f1f22, 0 30px 80px rgba(0,0,0,.55);
+  position: relative;
+  flex: none;
+}
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--ig-bg);
+  border-radius: 42px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+/* Dynamic island */
+.island {
+  position: absolute;
+  top: 9px; left: 50%; transform: translateX(-50%);
+  width: 116px; height: 32px; background: #000; border-radius: 20px; z-index: 60;
+}
+
+/* Status bar */
+.statusbar {
+  height: 50px; flex: none;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 26px 6px; font-size: 14px; font-weight: 600; z-index: 50;
+}
+.statusbar .sb-right { display: flex; align-items: center; gap: 6px; }
+.statusbar svg { display: block; }
+
+/* ---------- App header ---------- */
+.app-header {
+  height: var(--header-h); flex: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px; border-bottom: .5px solid var(--ig-sep-soft);
+}
+.app-header .brand {
+  font-family: "Segoe Script", "Snell Roundhand", cursive;
+  font-size: 24px; font-weight: 600;
+}
+.app-header .h-title { display: flex; align-items: center; gap: 6px; font-size: 20px; font-weight: 700; }
+.app-header .h-title .ic { width: 20px; }
+.app-header .h-actions { display: flex; align-items: center; gap: 18px; }
+.app-header .h-actions .ic { width: 24px; }
+.app-header .badge-dot { position: relative; }
+.app-header .badge-dot::after {
+  content: ""; position: absolute; top: -1px; right: -1px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--ig-red);
+  border: 1.5px solid #fff;
+}
+
+/* ---------- Scroll body ---------- */
+.body {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.body::-webkit-scrollbar { width: 0; }
+
+/* ---------- Profile header ---------- */
+.profile-top { padding: 14px 16px 0; }
+.profile-id-row { display: flex; align-items: center; gap: 26px; }
+.avatar-wrap { position: relative; flex: none; }
+.avatar-ring {
+  width: 86px; height: 86px; border-radius: 50%;
+  padding: 3px; background: var(--story-grad);
+}
+.avatar-ring.seen { background: #c7c7c7; }
+.avatar-ring.none { background: transparent; padding: 0; }
+.avatar-ring img {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  border: 3px solid #fff; background: #fff;
+}
+.avatar-plus {
+  position: absolute; right: -2px; bottom: -2px;
+  width: 24px; height: 24px; border-radius: 50%; background: var(--ig-blue);
+  border: 2px solid #fff; display: grid; place-items: center; color: #fff;
+}
+.avatar-plus .ic { width: 16px; stroke-width: 2.4; }
+
+.stats { flex: 1; display: flex; justify-content: space-around; text-align: center; }
+.stats .num { font-size: 17px; font-weight: 700; }
+.stats .label { font-size: 13px; color: var(--ig-fg); }
+
+.profile-bio { padding: 12px 16px 0; }
+.profile-name { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.profile-cat { font-size: 14px; color: var(--ig-secondary); margin-top: 1px; }
+.profile-text { font-size: 14px; line-height: 1.4; margin-top: 2px; white-space: pre-wrap; }
+.profile-link { font-size: 14px; color: #00376b; font-weight: 600; margin-top: 2px; display: inline-flex; align-items: center; gap: 4px; }
+.profile-link .ic { width: 14px; color: #00376b; }
+.bio-count { font-size: 11px; color: #b8b8b8; margin-top: 4px; }
+
+/* Action buttons row */
+.action-row { display: flex; gap: 6px; padding: 14px 16px 0; }
+.btn {
+  flex: 1; height: 32px; border: none; border-radius: 8px;
+  font-size: 14px; font-weight: 600; font-family: var(--font);
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.btn.primary { background: var(--ig-blue); color: #fff; }
+.btn.grey { background: var(--ig-grey-btn); color: #000; }
+.btn.icon { flex: 0 0 32px; }
+.btn.icon .ic { width: 18px; }
+
+/* ---------- Highlights ---------- */
+.highlights { display: flex; gap: 14px; padding: 16px 16px 12px; overflow-x: auto; }
+.highlights::-webkit-scrollbar { display: none; }
+.hl { flex: none; width: 64px; text-align: center; }
+.hl-cover {
+  width: 64px; height: 64px; border-radius: 50%; padding: 2px;
+  background: #fff; border: 1px solid var(--ig-sep);
+}
+.hl-cover img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.hl-new { display: grid; place-items: center; color: #262626; }
+.hl-new .ic { width: 26px; stroke-width: 1.4; }
+.hl-title {
+  font-size: 12px; margin-top: 6px; line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ---------- Tabs ---------- */
+.tabs { display: flex; border-top: .5px solid var(--ig-sep); position: sticky; top: 0; background: #fff; z-index: 5; }
+.tab {
+  flex: 1; height: 44px; display: grid; place-items: center;
+  color: #c7c7c7; border-bottom: 1px solid transparent;
+}
+.tab.active { color: #000; border-bottom-color: #000; }
+.tab .ic { width: 24px; }
+
+/* ---------- Grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+}
+.tile {
+  position: relative;
+  aspect-ratio: var(--tile-ratio);
+  overflow: hidden;
+  background: #efefef;
+}
+.tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile .tile-badge { position: absolute; top: 7px; right: 7px; color: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,.4)); }
+.tile .tile-badge .ic { width: 19px; }
+.tile .tile-views {
+  position: absolute; left: 7px; bottom: 7px; color: #fff; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 3px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5));
+}
+.tile .tile-views .ic { width: 15px; }
+
+/* ---------- Single post (feed) view ---------- */
+.post { border-bottom: .5px solid var(--ig-sep-soft); }
+.post-head { display: flex; align-items: center; gap: 10px; padding: 9px 12px; }
+.post-head .pa-ring { width: 34px; height: 34px; border-radius: 50%; padding: 2px; background: var(--story-grad); }
+.post-head .pa-ring img { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; }
+.post-head .pa-meta { flex: 1; line-height: 1.25; }
+.post-head .pa-user { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.post-head .pa-sub { font-size: 11px; color: #262626; }
+.post-head .ic { width: 22px; }
+.post-media { position: relative; width: 100%; aspect-ratio: var(--tile-ratio); background: #000; }
+.post-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-media .carousel-dots {
+  position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 4px;
+}
+.post-media .carousel-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); }
+.post-media .carousel-dots i.on { background: var(--ig-blue); }
+.post-media .car-count {
+  position: absolute; top: 10px; right: 12px; background: rgba(0,0,0,.6); color: #fff;
+  font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 11px;
+}
+.post-actions { display: flex; align-items: center; padding: 6px 12px 2px; }
+.post-actions .left { display: flex; gap: 14px; }
+.post-actions .ic { width: 24px; }
+.post-actions .spacer { flex: 1; }
+.post-likes { padding: 2px 12px; font-size: 14px; font-weight: 600; }
+.post-caption { padding: 1px 12px; font-size: 14px; line-height: 1.4; }
+.post-caption .cap-user { font-weight: 600; margin-right: 5px; }
+.cap-more { color: var(--ig-secondary); cursor: pointer; }
+.post-comments { padding: 3px 12px; }
+.post-comments .view-all { color: var(--ig-secondary); font-size: 14px; }
+.post-comments .cmt { font-size: 14px; line-height: 1.45; }
+.post-comments .cmt b { font-weight: 600; margin-right: 5px; }
+.post-time { padding: 4px 12px 12px; font-size: 11px; color: var(--ig-secondary); text-transform: uppercase; letter-spacing: .2px; }
+
+/* ---------- Stories tray (home) ---------- */
+.feed-stories { display: flex; gap: 14px; padding: 10px 12px; border-bottom: .5px solid var(--ig-sep-soft); overflow-x: auto; }
+.feed-stories::-webkit-scrollbar { display: none; }
+.fstory { flex: none; width: 66px; text-align: center; }
+.fstory .ring { width: 64px; height: 64px; border-radius: 50%; padding: 2.5px; background: var(--story-grad); }
+.fstory .ring.me { background: #efefef; }
+.fstory .ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2.5px solid #fff; }
+.fstory .name { font-size: 12px; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Bottom nav ---------- */
+.bottom-nav {
+  height: var(--nav-h); flex: none;
+  display: flex; align-items: center; justify-content: space-around;
+  border-top: .5px solid var(--ig-sep); background: #fff; padding-bottom: 4px;
+}
+.bottom-nav .nav-item { display: grid; place-items: center; color: #000; }
+.bottom-nav .nav-item .ic { width: 26px; }
+.bottom-nav .nav-avatar { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1.5px solid #000; }
+.home-indicator {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+  width: 134px; height: 5px; border-radius: 3px; background: #000; opacity: .85; z-index: 60;
+}
+
+/* ---------- Fullscreen overlays (Stories / Reels) ---------- */
+.overlay {
+  position: absolute; inset: 0; background: #000; z-index: 80;
+  display: none; flex-direction: column; border-radius: 42px; overflow: hidden;
+}
+.overlay.show { display: flex; }
+.overlay.light { background: #fff; color: #000; }
+
+/* Story */
+.story-progress { display: flex; gap: 4px; padding: 14px 10px 0; }
+.story-progress .seg { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.35); overflow: hidden; }
+.story-progress .seg .fill { height: 100%; width: 0; background: #fff; }
+.story-progress .seg.done .fill { width: 100%; }
+.story-progress .seg.active .fill { animation: storyfill 5s linear forwards; }
+@keyframes storyfill { to { width: 100%; } }
+.story-head { display: flex; align-items: center; gap: 10px; padding: 12px 12px 0; color: #fff; }
+.story-head img.sa { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.story-head .su { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.story-head .st { font-size: 13px; opacity: .8; }
+.story-head .ic { width: 24px; }
+.story-img { flex: 1; min-height: 0; }
+.story-img img { width: 100%; height: 100%; object-fit: cover; }
+.story-reply { display: flex; align-items: center; gap: 12px; padding: 12px; }
+.story-reply .field { flex: 1; height: 44px; border: 1px solid rgba(255,255,255,.6); border-radius: 22px; color: rgba(255,255,255,.85); display: flex; align-items: center; padding: 0 16px; font-size: 14px; }
+.story-reply .ic { color: #fff; width: 26px; }
+
+/* Reels */
+.reel { position: relative; flex: 1; }
+.reel-bg { position: absolute; inset: 0; }
+.reel-bg img { width: 100%; height: 100%; object-fit: cover; }
+.reel-top { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 16px 14px; color: #fff; z-index: 2; }
+.reel-top .rt-title { font-size: 17px; font-weight: 700; }
+.reel-rail { position: absolute; right: 10px; bottom: 96px; display: flex; flex-direction: column; gap: 20px; align-items: center; color: #fff; z-index: 2; }
+.reel-rail .rr { display: grid; place-items: center; gap: 3px; font-size: 12px; font-weight: 600; }
+.reel-rail .rr .ic { width: 28px; }
+.reel-rail .rr-audio { width: 28px; height: 28px; border-radius: 7px; border: 2px solid #fff; overflow: hidden; }
+.reel-rail .rr-audio img { width: 100%; height: 100%; object-fit: cover; }
+.reel-meta { position: absolute; left: 12px; right: 70px; bottom: 84px; color: #fff; z-index: 2; }
+.reel-meta .ru { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
+.reel-meta .ru img { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #fff; }
+.reel-meta .ru .followbtn { border: 1px solid #fff; border-radius: 7px; padding: 3px 10px; font-size: 13px; font-weight: 600; }
+.reel-meta .rcap { font-size: 13px; line-height: 1.4; margin-top: 8px; }
+.reel-meta .raudio { display: flex; align-items: center; gap: 6px; font-size: 13px; margin-top: 8px; }
+.reel-meta .raudio .ic { width: 15px; }
+.reel-meta .cap-more { color: rgba(255,255,255,.85); }
+
+/* Generic top bar inside overlays / detail screen */
+.detail-header {
+  height: var(--header-h); flex: none; display: flex; align-items: center; gap: 14px;
+  padding: 0 12px; border-bottom: .5px solid var(--ig-sep-soft); background: #fff;
+}
+.detail-header .ic { width: 24px; }
+.detail-header .dh-titles { line-height: 1.15; }
+.detail-header .dh-sub { font-size: 11px; }
+.detail-header .dh-main { font-size: 15px; font-weight: 700; }
+
+.hidden { display: none !important; }
