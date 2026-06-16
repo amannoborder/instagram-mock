@@ -40,7 +40,7 @@ export default function PhoneMock() {
     <div className="device">
       <div className="screen">
         <div className="island"></div>
-        <StatusBar />
+        {/* <StatusBar /> */}
         <AppHeader screen={screen} />
 
         {screen === 'feed'

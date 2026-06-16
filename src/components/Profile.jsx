@@ -41,7 +41,7 @@ export default function Profile({ onOpenPost }) {
             <Ic name="link" opts={{ w: 14 }} /> {l.label}
           </a>
         ))}
-        <button className="add-banners"><Ic name="add" opts={{ w: 16 }} /> Add banners</button>
+        {/* <button className="add-banners"><Ic name="add" opts={{ w: 16 }} /> Add banners</button> */}
       </div>
 
       <div className="action-row">
