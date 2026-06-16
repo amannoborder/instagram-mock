@@ -23,16 +23,19 @@ export default function Profile({ onOpenPost }) {
             <div className="avatar-ring"><img src={a.avatar} alt="" /></div>
             <div className="avatar-plus"><Ic name="add" /></div>
           </div>
-          <div className="stats">
-            <div><div className="num">{a.stats.posts}</div><div className="label">posts</div></div>
-            <div><div className="num">{abbreviateCount(a.stats.followers)}</div><div className="label">followers</div></div>
-            <div><div className="num">{a.stats.following}</div><div className="label">following</div></div>
+          <div className="profile-id-main">
+            {/* Display name sits above the stats, beside the avatar (current IG) */}
+            <div className="profile-name">{a.displayName} <Verified show={a.verified} /></div>
+            <div className="stats">
+              <div><div className="num">{a.stats.posts}</div><div className="label">posts</div></div>
+              <div><div className="num">{abbreviateCount(a.stats.followers)}</div><div className="label">followers</div></div>
+              <div><div className="num">{a.stats.following}</div><div className="label">following</div></div>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="profile-bio">
-        <div className="profile-name">{handle} <Verified show={a.verified} /></div>
         <div className="profile-cat">{a.category}</div>
         <div className="profile-text">{bio}</div>
         {a.links.map((l, i) => (
