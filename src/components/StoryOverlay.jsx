@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
-import { ALL_STORIES } from '../lib/data.js'
 import { LIMITS, clamp } from '../lib/limits.js'
 import { ICONS } from '../lib/icons.js'
 import Icon, { Verified } from './Icon.jsx'
+import { useStore } from '../store.jsx'
 
 // Fullscreen story: segmented progress bar that auto-advances every 5s
 // (tap the image to skip forward), plus the reply bar. Closes after the
 // last segment, mirroring the original vanilla behavior.
 export default function StoryOverlay({ idx, onClose }) {
-  const s = ALL_STORIES[idx] || ALL_STORIES[0]
+  const { stories } = useStore()
+  const s = stories[idx] || stories[0]
   const segs = s.segments || [s.avatar]
   const [cur, setCur] = useState(0)
 

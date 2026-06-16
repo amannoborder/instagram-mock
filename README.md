@@ -12,8 +12,11 @@ npm run preview   # serve the built bundle
 ```
 
 ## Layout
-Two panes (controls left, mock right, per Rio). The **controls pane is a
-placeholder** for now — the phone-mock pane is built first.
+Two panes (controls left, mock right, per Rio). The **controls pane is live** —
+its inputs edit a shared store ([src/store.jsx](src/store.jsx)) that every mock
+screen reads from, so edits (username, display name, bio, counts, highlight
+titles, captions, verified, note) render in the phone preview in real time, with
+char-limit counters + truncation driven by [src/lib/limits.js](src/lib/limits.js).
 
 ## Screens (all in the phone mock)
 - **Profile** (default) — avatar w/ story ring, counts, bio, Follow/Message row,

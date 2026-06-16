@@ -1,15 +1,14 @@
-import { ACCOUNT, POSTS, REELS } from '../lib/data.js'
-import { LIMITS, clamp, abbreviateCount } from '../lib/limits.js'
+import { abbreviateCount } from '../lib/limits.js'
 import { ICONS } from '../lib/icons.js'
 import Icon, { Ic, Verified } from './Icon.jsx'
 import Caption from './Caption.jsx'
-
-const handle = clamp(ACCOUNT.username, LIMITS.USERNAME)
+import { useStore } from '../store.jsx'
 
 // Fullscreen reel: media, right action rail (like/comment/share/audio),
 // and the meta row with follow button, caption, and audio attribution.
 export default function ReelsOverlay({ onClose }) {
-  const r = REELS[0] || POSTS[0]
+  const { account: ACCOUNT, posts, reels, handle } = useStore()
+  const r = reels[0] || posts[0]
   return (
     <div className="overlay show" id="reels-overlay">
       <div className="reel">

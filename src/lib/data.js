@@ -109,8 +109,12 @@ export const STORIES = [
     segments: [img('story-drop-1', 800, 1400), img('story-drop-2', 800, 1400)] }
 ];
 
+// The seeded (non-owner) stories, exported so the store can rebuild the tray
+// after the owner's avatar/username change.
+export const SEEDED_STORIES = seedStories();
+
 // The full tray, in render order (own story first, then seeded accounts).
-export const ALL_STORIES = STORIES.concat(seedStories());
+export const ALL_STORIES = STORIES.concat(SEEDED_STORIES);
 
 // Reels feed (9:16).
 export const REELS = POSTS.filter(p => p.type === 'reel');

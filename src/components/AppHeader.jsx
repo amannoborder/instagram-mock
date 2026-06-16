@@ -1,11 +1,9 @@
-import { ACCOUNT } from '../lib/data.js'
-import { LIMITS, clamp } from '../lib/limits.js'
 import { Ic } from './Icon.jsx'
-
-const handle = clamp(ACCOUNT.username, LIMITS.USERNAME)
+import { useStore } from '../store.jsx'
 
 // Top app bar: the cursive "Instagram" wordmark on feed, the handle on profile.
 export default function AppHeader({ screen }) {
+  const { handle } = useStore()
   if (screen === 'feed') {
     // New 2026 layout: Create (+) sits at the top-left; DMs moved to the nav,
     // so the top-right keeps only Notifications (heart).

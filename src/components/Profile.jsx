@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { ACCOUNT, POSTS } from '../lib/data.js'
 import { LIMITS, clamp, clampHighlight, abbreviateCount } from '../lib/limits.js'
 import { ICONS } from '../lib/icons.js'
 import Icon, { Ic, Verified } from './Icon.jsx'
-
-const handle = clamp(ACCOUNT.username, LIMITS.USERNAME)
+import { useStore } from '../store.jsx'
 
 export default function Profile({ onOpenPost }) {
-  const a = ACCOUNT
+  const { account: a, posts: POSTS, handle } = useStore()
   const bio = clamp(a.bio, LIMITS.BIO)
   const [tab, setTab] = useState('grid')
 

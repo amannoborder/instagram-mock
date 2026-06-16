@@ -1,13 +1,11 @@
-import { ACCOUNT, POSTS } from '../lib/data.js'
-import { LIMITS, clamp } from '../lib/limits.js'
 import { Ic } from './Icon.jsx'
 import PostCard from './PostCard.jsx'
-
-const handle = clamp(ACCOUNT.username, LIMITS.USERNAME)
+import { useStore } from '../store.jsx'
 
 // Opened-post overlay (light): IG "Posts" header + the full post card.
 export default function PostDetail({ id, onClose }) {
-  const p = POSTS.find((x) => x.id === id)
+  const { posts, handle } = useStore()
+  const p = posts.find((x) => x.id === id)
   if (!p) return null
   return (
     <div className="overlay light show" id="post-detail-overlay">

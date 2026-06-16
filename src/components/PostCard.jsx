@@ -1,12 +1,11 @@
-import { ACCOUNT } from '../lib/data.js'
 import { LIMITS, clamp, withCommas } from '../lib/limits.js'
 import { Ic, Verified } from './Icon.jsx'
 import Caption from './Caption.jsx'
-
-const handle = clamp(ACCOUNT.username, LIMITS.USERNAME)
+import { useStore } from '../store.jsx'
 
 // A single feed post card: header, media, action row, likes, caption, comments.
 export default function PostCard({ post }) {
+  const { account: ACCOUNT, handle } = useStore()
   const p = post
   return (
     <div className="post" data-post={p.id}>
