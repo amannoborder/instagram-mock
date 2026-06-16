@@ -18,6 +18,7 @@ export function StoreProvider({ children }) {
       setAccount(a => ({ ...a, highlights: a.highlights.map((h, idx) => idx === i ? { ...h, title: value } : h) })),
     // post field setters
     setPostCaption: (id, value) => setPosts(ps => ps.map(p => p.id === id ? { ...p, caption: value } : p)),
+    setPostImage: (id, value) => setPosts(ps => ps.map(p => p.id === id ? { ...p, image: value } : p)),
     reset: () => { setAccount(ACCOUNT); setPosts(POSTS) },
   }), [])
 

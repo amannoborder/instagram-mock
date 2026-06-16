@@ -11,12 +11,18 @@ npm run build     # production bundle → dist/
 npm run preview   # serve the built bundle
 ```
 
-## Layout
-Two panes (controls left, mock right, per Rio). The **controls pane is live** —
-its inputs edit a shared store ([src/store.jsx](src/store.jsx)) that every mock
-screen reads from, so edits (username, display name, bio, counts, highlight
-titles, captions, verified, note) render in the phone preview in real time, with
-char-limit counters + truncation driven by [src/lib/limits.js](src/lib/limits.js).
+## Pages (react-router)
+- **`/`** — the phone mock on its own (the clean deliverable view), in IG **dark
+  mode**. Link to the controls page in the corner.
+- **`/controls`** — the live editor: the controls form + a phone preview
+  side-by-side.
+
+The **controls are live** — inputs edit a shared store
+([src/store.jsx](src/store.jsx)) that every mock screen reads from, so edits
+(username, display name, bio, counts, highlight titles, captions, verified, note,
+**uploaded images**) render in the phone preview in real time, with char-limit
+counters + truncation driven by [src/lib/limits.js](src/lib/limits.js). The store
+persists across the two pages (it sits above the router).
 
 ## Screens (all in the phone mock)
 - **Profile** (default) — avatar w/ story ring, counts, bio, Follow/Message row,

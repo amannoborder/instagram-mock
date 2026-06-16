@@ -6,29 +6,44 @@
 // (deterministic). Swap these for your real renders when the post-plan is ready.
 const img = (seed, w, h) => `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
 
+// Real feed renders, uploaded to ImageKit. Filenames are inconsistent on the
+// bucket (mixed case, some with spaces), so map each post number to its exact
+// file rather than assuming a pattern. NOTE: image 3 (Image3.png) currently
+// 404s on the bucket — re-upload/rename it for that tile to load.
+const IK_FILES = {
+  1: 'Image1.png',
+  2: 'image 2.png',
+  3: 'Image3.png',
+  4: 'Image4.png',
+  5: 'Image5.png',
+  6: 'image 6.png',
+  7: 'Image 7.png',
+  8: 'Image 8.png',
+  9: 'Image 9.png',
+  10: 'Image 10.png',
+};
+const ik = (n) => `https://ik.imagekit.io/xanalia/xana/diamond/${encodeURIComponent(IK_FILES[n])}`;
+
 export const ACCOUNT = {
-  username: 'aurelia.atelier',          // ≤ 30
-  displayName: 'Aurelia · AI Atelier',
+  username: 'eiwa.material',             // ≤ 30
+  displayName: 'EIWA-MATERIAL',
   verified: true,
-  category: 'Digital creator',
-  note: 'Today’s vibe…',                  // the "Note" bubble shown above the avatar
+  category: 'Master Diamond Polishing',
+  note: 'Triple Excellent ✨',             // the "Note" bubble shown above the avatar
   // Bio deliberately probes the 150-char cap. Anything past 150 is clipped.
   bio:
-    'Synthetic muse & curator ✦ AI-generated couture drops weekly\n' +
-    'Collection account — every look is rendered, never worn\n' +
-    'New capsule → Fridays 6pm GMT',
-  links: [{ label: 'aurelia.studio/drops', url: '#' }],
-  avatar: img('aurelia-avatar', 240, 240),
+    'Triple Excellent, every time.\n' +
+    'The value of a diamond is in its polish.\n' +
+    'Work with us: 03-6381-7541 / info@eiwa-material.com',
+  links: [{ label: 'info@eiwa-material.com', url: 'mailto:info@eiwa-material.com' }],
+  avatar: ik(1),
   stats: { posts: 0, followers: 184200, following: 12 }, // posts filled below
   // Drives the Professional Dashboard card (Creator/Business accounts, owner view).
   reachLast30Days: 612400,
   // Story highlights — titles probe the ~15-char truncation.
   highlights: [
-    { title: 'SS26 Capsule Edit', cover: img('hl-capsule', 200, 200) },
-    { title: 'Behind the Render', cover: img('hl-render', 200, 200) },
-    { title: 'Press', cover: img('hl-press', 200, 200) },
-    { title: 'Atelier Process', cover: img('hl-atelier', 200, 200) },
-    { title: 'FAQ', cover: img('hl-faq', 200, 200) }
+    { title: 'Polishing', cover: ik(2) },
+    { title: 'Recutting', cover: ik(4) }
   ]
 };
 
@@ -37,58 +52,135 @@ export const ACCOUNT = {
 export const POSTS = [
   {
     id: 'p1',
-    image: img('look-liquid-chrome', 800, 1000),
-    type: 'carousel',
+    image: ik(1),
+    type: 'image',
     likes: 21430,
     caption:
-      'Drop 01 — “Liquid Chrome”. Rendered in a single overnight pass, then ' +
-      'hand-graded for that wet-metal falloff. Swipe for the back seam and the ' +
-      'detached collar study. Which colourway should make the capsule? 🤍',
+      'Three decades. One obsession: the perfect polish.\n' +
+      'For 30 years, we’ve shaped the world’s highest-value diamonds — where ' +
+      'trust is cut as precisely as the stone itself. ✨\n' +
+      '#DiamondPolishing #30YearsOfTrust #EIWA #LuxuryDiamonds #JapaneseCraftsmanship',
     comments: [
-      { user: 'studio.noor', text: 'the chrome falloff is unreal 🔥', verified: false },
-      { user: 'render.daily', text: 'collar study >>> please drop the wires', verified: true }
+      { user: 'maison.lumiere', text: 'thirty years of pure craft 🤍', verified: true },
+      { user: 'rough.and.fire', text: 'the standard everyone measures against', verified: false }
     ],
     time: '2 HOURS AGO'
   },
   {
     id: 'p2',
-    image: img('look-organza', 800, 1000),
+    image: ik(2),
     type: 'image',
-    likes: 9820,
-    caption: 'Sunbleached organza test. No retouch on the light — straight render. ☀️',
-    comments: [{ user: 'atelier.kim', text: 'the translucency 😮‍💨', verified: false }],
+    likes: 18760,
+    caption:
+      'Consistently achieving Triple Excellent.\n' +
+      'Cut. Polish. Symmetry. When all three reach Excellent, light has nowhere ' +
+      'to hide. This is the standard we never compromise. 💎\n' +
+      '#3EX #TripleExcellent #DiamondCut #BrillianceRedefined #EIWA',
+    comments: [{ user: 'gem.optics', text: 'light has nowhere to hide — perfectly said', verified: false }],
     time: '6 HOURS AGO'
   },
   {
     id: 'p3',
-    image: img('look-aero-gown', 800, 1000),
-    type: 'reel',
-    likes: 53110,
-    views: 412000,
+    image: ik(3),
+    type: 'image',
+    likes: 24510,
     caption:
-      'Turntable for the “Aero” gown — 9:16, full 360. Cloth sim took 14 hours ' +
-      'and it was worth every frame. Sound on for the seam-stress soundtrack. 🎧',
-    comments: [{ user: 'cgi.couture', text: 'the cloth sim is buttery', verified: true }],
+      'The world stops at 3EX. We begin there.\n' +
+      'Our craftsmen pursue a level of precision the grading charts don’t even ' +
+      'measure. 200× fewer polishing marks. 10–20× more light return.\n' +
+      '#BeyondStandard #DiamondScience #PrecisionPolishing #EIWA #FineJewelry',
+    comments: [{ user: 'carat.science', text: '200× fewer marks is wild 🔬', verified: true }],
     time: '1 DAY AGO'
   },
-  { id: 'p4', image: img('look-velvet-noir', 800, 1000), type: 'image', likes: 7340,
-    caption: 'Velvet noir, matte subsurface.', comments: [], time: '1 DAY AGO' },
-  { id: 'p5', image: img('look-glass-knit', 800, 1000), type: 'carousel', likes: 11200,
-    caption: 'Glass-knit study, 3 ways.', comments: [], time: '2 DAYS AGO' },
-  { id: 'p6', image: img('look-petalwork', 800, 1000), type: 'image', likes: 6010,
-    caption: 'Petalwork bodice.', comments: [], time: '2 DAYS AGO' },
-  { id: 'p7', image: img('look-nightfall', 800, 1000), type: 'reel', likes: 38900,
-    views: 256000, caption: 'Nightfall walk cycle.', comments: [], time: '3 DAYS AGO' },
-  { id: 'p8', image: img('look-sandcast', 800, 1000), type: 'image', likes: 4720,
-    caption: 'Sand-cast accessories.', comments: [], time: '4 DAYS AGO' },
-  { id: 'p9', image: img('look-iridescent', 800, 1000), type: 'image', likes: 8150,
-    caption: 'Iridescent shell coat.', comments: [], time: '5 DAYS AGO' },
-  { id: 'p10', image: img('look-pearl-drip', 800, 1000), type: 'carousel', likes: 9930,
-    caption: 'Pearl-drip gloves.', comments: [], time: '6 DAYS AGO' },
-  { id: 'p11', image: img('look-cloudweave', 800, 1000), type: 'image', likes: 5400,
-    caption: 'Cloudweave cape.', comments: [], time: '1 WEEK AGO' },
-  { id: 'p12', image: img('look-rose-latex', 800, 1000), type: 'image', likes: 7600,
-    caption: 'Rosé latex sculpt.', comments: [], time: '1 WEEK AGO' }
+  {
+    id: 'p4',
+    image: ik(4),
+    type: 'image',
+    likes: 33980,
+    caption:
+      'A second life, a brighter shine.\n' +
+      'Our recutting service revives tired or dated stones — restoring fire that ' +
+      'time and old cuts had dimmed.\n' +
+      '#DiamondRecutting #Restoration #SecondLife #EIWA #DiamondExperts',
+    comments: [],
+    time: '1 DAY AGO'
+  },
+  {
+    id: 'p5',
+    image: ik(5),
+    type: 'image',
+    likes: 15240,
+    caption:
+      'Cuts inspired by Japanese aesthetics.\n' +
+      'Beyond the standard round — bespoke cuts born from the quiet discipline ' +
+      'of Japanese design. 🌸\n' +
+      '#OriginalCut #JapaneseAesthetics #BespokeDiamonds #EIWA #ArtOfTheCut',
+    comments: [],
+    time: '2 DAYS AGO'
+  },
+  {
+    id: 'p6',
+    image: ik(6),
+    type: 'image',
+    likes: 12880,
+    caption:
+      'Exceptional craftsmen, backed by 30 years of trust.\n' +
+      'Every facet passes through experienced hands. Machines measure — masters decide.\n' +
+      '#MasterCraftsman #DiamondPolisher #Handcrafted #EIWA #Artisan',
+    comments: [],
+    time: '2 DAYS AGO'
+  },
+  {
+    id: 'p7',
+    image: ik(7),
+    type: 'image',
+    likes: 28640,
+    caption:
+      'From rough selection to final polish.\n' +
+      'The journey of a diamond is decided long before the first cut — it begins ' +
+      'with choosing the right rough.\n' +
+      '#RoughDiamond #DiamondJourney #FromRoughToFinal #EIWA #DiamondPolishing',
+    comments: [],
+    time: '3 DAYS AGO'
+  },
+  {
+    id: 'p8',
+    image: ik(8),
+    type: 'image',
+    likes: 19320,
+    caption:
+      '“God resides in the details.”\n' +
+      'A single polishing mark, invisible to most, is everything to us. ' +
+      'Perfection lives in what you cannot see.\n' +
+      '#InTheDetails #Perfection #DiamondPolishing #EIWA #LuxuryCraft',
+    comments: [],
+    time: '4 DAYS AGO'
+  },
+  {
+    id: 'p9',
+    image: ik(9),
+    type: 'image',
+    likes: 17100,
+    caption:
+      'Trusted by the world’s diamond institutions.\n' +
+      'From our factories to global vaults — the standard that the industry’s ' +
+      'most demanding partners rely on.\n' +
+      '#TrustedWorldwide #DiamondInstitutions #GlobalStandard #EIWA #FineDiamonds',
+    comments: [],
+    time: '5 DAYS AGO'
+  },
+  {
+    id: 'p10',
+    image: ik(10),
+    type: 'image',
+    likes: 22480,
+    caption:
+      'The value of a diamond is determined by its polish.\n' +
+      'Entrust your diamonds to us — and let their true light be revealed. ✨\n' +
+      '#DiamondValue #ThePolishMatters #EntrustYourDiamonds #EIWA #30YearsOfTrust',
+    comments: [],
+    time: '6 DAYS AGO'
+  }
 ];
 
 ACCOUNT.stats.posts = POSTS.length;

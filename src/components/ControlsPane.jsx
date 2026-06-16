@@ -7,10 +7,41 @@ function Counter({ value, max }) {
   return <span className={`cp-count ${value > max ? 'over' : ''}`}>{value}/{max}</span>
 }
 
+const readAsDataURL = (file) => new Promise((resolve, reject) => {
+  const reader = new FileReader()
+  reader.onload = () => resolve(reader.result)
+  reader.onerror = reject
+  reader.readAsDataURL(file)
+})
+
+// Image control: live thumbnail + file upload (→ data URL) + paste-URL fallback.
+function ImagePicker({ src, onChange }) {
+  const onFile = async (e) => {
+    const file = e.target.files[0]
+    if (file) onChange(await readAsDataURL(file))
+    e.target.value = '' // allow re-picking the same file
+  }
+  const applyUrl = (e) => { const v = e.target.value.trim(); if (v) onChange(v) }
+  return (
+    <div className="cp-img">
+      <img className="cp-thumb" src={src} alt="" />
+      <div className="cp-img-actions">
+        <label className="cp-upload">
+          Upload image
+          <input type="file" accept="image/*" onChange={onFile} hidden />
+        </label>
+        <input className="cp-url" type="url" placeholder="or paste URL, then Enter"
+          onBlur={applyUrl}
+          onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); applyUrl(e) } }} />
+      </div>
+    </div>
+  )
+}
+
 // The controls pane — edits the shared store, which drives the phone mock live.
 // Char limits + truncation come from src/lib/limits.js (single source of truth).
 export default function ControlsPane() {
-  const { account, posts, setField, setStat, setHighlightTitle, setPostCaption, reset } = useStore()
+  const { account, posts, setField, setStat, setHighlightTitle, setPostCaption, setPostImage, reset } = useStore()
   const [postId, setPostId] = useState(posts[0].id)
   const post = posts.find((p) => p.id === postId) || posts[0]
   const cap = captionParts(post.caption, LIMITS.CAPTION_PREVIEW)
@@ -25,6 +56,11 @@ export default function ControlsPane() {
       <div className="cp-scroll">
         <section className="cp-group">
           <h3>Profile</h3>
+
+          <div className="cp-field">
+            <span className="cp-label">Profile photo</span>
+            <ImagePicker src={account.avatar} onChange={(url) => setField('avatar', url)} />
+          </div>
 
           <label className="cp-field">
             <span className="cp-label">Username <Counter value={account.username.length} max={LIMITS.USERNAME} /></span>
@@ -94,15 +130,19 @@ export default function ControlsPane() {
         </section>
 
         <section className="cp-group">
-          <h3>Caption</h3>
+          <h3>Post</h3>
           <label className="cp-field">
-            <span className="cp-label">Post</span>
+            <span className="cp-label">Select post</span>
             <select value={postId} onChange={(e) => setPostId(e.target.value)}>
               {posts.map((p, i) => (
                 <option key={p.id} value={p.id}>{`#${i + 1} · ${p.type}`}</option>
               ))}
             </select>
           </label>
+          <div className="cp-field">
+            <span className="cp-label">Image</span>
+            <ImagePicker src={post.image} onChange={(url) => setPostImage(post.id, url)} />
+          </div>
           <label className="cp-field">
             <span className="cp-label">
               Caption{' '}
