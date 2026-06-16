@@ -41,16 +41,30 @@ function ImagePicker({ src, onChange }) {
 // The controls pane — edits the shared store, which drives the phone mock live.
 // Char limits + truncation come from src/lib/limits.js (single source of truth).
 export default function ControlsPane() {
-  const { account, posts, setField, setStat, setHighlightTitle, setPostCaption, setPostImage, reset } = useStore()
+  const { account, posts, setField, setStat, setHighlightTitle, setPostCaption, setPostImage, reset, save } = useStore()
   const [postId, setPostId] = useState(posts[0].id)
   const post = posts.find((p) => p.id === postId) || posts[0]
   const cap = captionParts(post.caption, LIMITS.CAPTION_PREVIEW)
+  const [status, setStatus] = useState('') // '', 'saved', 'error'
+
+  const onSave = () => {
+    const ok = save()
+    setStatus(ok ? 'saved' : 'error')
+    setTimeout(() => setStatus(''), 2000)
+  }
+  const onReset = () => {
+    reset()
+    setStatus('')
+  }
 
   return (
     <aside className="controls-pane" aria-label="Post controls">
       <div className="cp-head">
         <h2>Post Controls</h2>
-        <button className="cp-reset" onClick={reset}>Reset</button>
+        {status === 'saved' && <span className="cp-saved">Saved ✓</span>}
+        {status === 'error' && <span className="cp-saved err">Too large to save</span>}
+        <button className="cp-reset" onClick={onReset}>Reset</button>
+        <button className="cp-save" onClick={onSave}>Save</button>
       </div>
 
       <div className="cp-scroll">

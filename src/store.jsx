@@ -6,9 +6,26 @@ import { LIMITS, clamp } from './lib/limits.js'
 // every phone-mock screen reads from it, so edits render live.
 const StoreCtx = createContext(null)
 
+// Persistence — edits live in memory until the user hits Save, which writes the
+// snapshot here so it survives a page refresh. Reset clears it back to defaults.
+const STORAGE_KEY = 'eiwa-mock-state'
+
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return null
+    const data = JSON.parse(raw)
+    if (!data || !data.account || !Array.isArray(data.posts)) return null
+    return data
+  } catch {
+    return null
+  }
+}
+
 export function StoreProvider({ children }) {
-  const [account, setAccount] = useState(ACCOUNT)
-  const [posts, setPosts] = useState(POSTS)
+  const saved = loadSaved()
+  const [account, setAccount] = useState(saved?.account ?? ACCOUNT)
+  const [posts, setPosts] = useState(saved?.posts ?? POSTS)
 
   const api = useMemo(() => ({
     // account field setters
@@ -19,8 +36,24 @@ export function StoreProvider({ children }) {
     // post field setters
     setPostCaption: (id, value) => setPosts(ps => ps.map(p => p.id === id ? { ...p, caption: value } : p)),
     setPostImage: (id, value) => setPosts(ps => ps.map(p => p.id === id ? { ...p, image: value } : p)),
-    reset: () => { setAccount(ACCOUNT); setPosts(POSTS) },
+    reset: () => {
+      try { localStorage.removeItem(STORAGE_KEY) } catch { /* ignore */ }
+      setAccount(ACCOUNT)
+      setPosts(POSTS)
+    },
   }), [])
+
+  // Persist the current snapshot so edits survive a refresh. Defined in render
+  // scope so it closes over the latest account/posts. Returns false if storage
+  // rejected it (e.g. quota exceeded by large uploaded data-URL images).
+  const save = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ account, posts }))
+      return true
+    } catch {
+      return false
+    }
+  }
 
   // derived values, kept in sync with the editable state
   const handle = clamp(account.username, LIMITS.USERNAME)
@@ -30,7 +63,7 @@ export function StoreProvider({ children }) {
     ...SEEDED_STORIES,
   ]), [account.username, account.avatar, account.verified])
 
-  const value = { account, posts, handle, reels, stories, ...api }
+  const value = { account, posts, handle, reels, stories, ...api, save }
   return <StoreCtx.Provider value={value}>{children}</StoreCtx.Provider>
 }
 

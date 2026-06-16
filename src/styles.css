@@ -78,18 +78,25 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
-/* Header (sticky) + reset */
+/* Header (sticky) + save/reset */
 .controls-pane .cp-head {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; gap: 8px;
   padding: 18px 20px; border-bottom: 1px solid #232329; flex: none;
 }
-.controls-pane h2 { font-size: 15px; color: #f2f2f5; margin: 0; letter-spacing: .2px; }
-.controls-pane .cp-reset {
-  font: inherit; font-size: 12px; font-weight: 600; color: #cdd6ff;
-  background: #21222b; border: 1px solid #34354200; border-radius: 8px;
+.controls-pane h2 { font-size: 15px; color: #f2f2f5; margin: 0 auto 0 0; letter-spacing: .2px; }
+.controls-pane .cp-saved {
+  font-size: 11px; font-weight: 600; color: #57d28a;
+}
+.controls-pane .cp-saved.err { color: #ff7676; }
+.controls-pane .cp-reset, .controls-pane .cp-save {
+  font: inherit; font-size: 12px; font-weight: 600;
+  border: 1px solid transparent; border-radius: 8px;
   padding: 5px 12px; cursor: pointer;
 }
+.controls-pane .cp-reset { color: #cdd6ff; background: #21222b; }
 .controls-pane .cp-reset:hover { background: #2a2c38; }
+.controls-pane .cp-save { color: #fff; background: #3b5bff; }
+.controls-pane .cp-save:hover { background: #2f4be0; }
 
 /* Scroll area + groups */
 .controls-pane .cp-scroll { flex: 1; overflow-y: auto; padding: 16px 20px 24px; }
