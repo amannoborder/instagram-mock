@@ -56,13 +56,15 @@ body {
   .controls-pane .cp-scroll { overflow: visible; }
 }
 @media (max-width: 430px) {
-  #root { padding: 0; }
-  .device {
-    width: 100vw; height: auto; aspect-ratio: 390 / 844;
+  #root { padding: 0; min-height: 100dvh; }
+  /* Mock page: phone fills the whole viewport — no outer black bands */
+  .page-mock { margin: 0; width: 100%; }
+  .page-mock .device {
+    width: 100vw; height: 100vh; height: 100dvh;
     border-radius: 0; padding: 0; box-shadow: none;
   }
-  .device .screen { border-radius: 0; }
-  .device .island, .device .home-indicator { display: none; }
+  .page-mock .device .screen { border-radius: 0; }
+  .page-mock .device .island, .page-mock .device .home-indicator { display: none; }
 }
 
 .controls-pane {

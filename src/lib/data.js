@@ -133,8 +133,9 @@ export const POSTS = [
   {
     id: 'p7',
     image: ik(7),
-    type: 'image',
+    type: 'reel',
     likes: 28640,
+    views: 211000,
     caption:
       'From rough selection to final polish.\n' +
       'The journey of a diamond is decided long before the first cut — it begins ' +
