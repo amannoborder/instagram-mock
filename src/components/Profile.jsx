@@ -25,7 +25,7 @@ export default function Profile({ onOpenPost }) {
             {/* Display name sits above the stats, beside the avatar (current IG) */}
             <div className="profile-name">{a.displayName} <Verified show={a.verified} /></div>
             <div className="stats">
-              <div><div className="num">{a.stats.posts}</div><div className="label">posts</div></div>
+              <div><div className="num">{abbreviateCount(POSTS.length)}</div><div className="label">posts</div></div>
               <div><div className="num">{abbreviateCount(a.stats.followers)}</div><div className="label">followers</div></div>
               <div><div className="num">{a.stats.following}</div><div className="label">following</div></div>
             </div>

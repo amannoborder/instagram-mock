@@ -1,0 +1,25 @@
+name = "eiwa-dummy-ig"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Images
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "eiwa-dummy-ig"
+
+# Manifest (atomic, single writer)
+[[durable_objects.bindings]]
+name = "MANIFEST"
+class_name = "ManifestStore"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ManifestStore"]
+
+[vars]
+# Public base for image URLs. Leave blank to use the request origin, or set to a
+# custom domain, e.g. "https://ig.eiwa-material.com".
+PUBLIC_BASE = ""
+
+# Secret (do NOT put in this file):
+#   wrangler secret put UPLOAD_TOKEN

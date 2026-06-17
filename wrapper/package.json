@@ -1,0 +1,8 @@
+{
+  "name": "@eiwa/dummy-ig",
+  "version": "1.0.0",
+  "description": "One command: prompt → generated image → posted to the dummy-IG.",
+  "type": "module",
+  "bin": { "dummy-ig": "./dummy-ig.mjs" },
+  "engines": { "node": ">=18" }
+}

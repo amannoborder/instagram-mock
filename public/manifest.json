@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "updatedAt": "2026-06-17T09:31:17.605Z",
+  "account": {
+    "username": "eiwa.material",
+    "displayName": "EIWA-MATERIAL",
+    "verified": true,
+    "category": "Master Diamond Polishing",
+    "note": "Triple Excellent ✨",
+    "bio": "Triple Excellent, every time.\nThe value of a diamond is in its polish.\nWork with us: 03-6381-7541 / info@eiwa-material.com",
+    "links": [
+      {
+        "label": "info@eiwa-material.com",
+        "url": "mailto:info@eiwa-material.com"
+      }
+    ],
+    "avatar": "https://ik.imagekit.io/xanalia/xana/diamond/Image1.png",
+    "stats": {
+      "followers": 184200,
+      "following": 12
+    },
+    "reachLast30Days": 612400,
+    "highlights": [
+      {
+        "title": "Polishing",
+        "cover": "https://ik.imagekit.io/xanalia/xana/diamond/image%206.png"
+      },
+      {
+        "title": "Recutting",
+        "cover": "https://ik.imagekit.io/xanalia/xana/diamond/Image4.png"
+      }
+    ]
+  },
+  "posts": [
+    {
+      "id": "169546db-b4f4-4b1d-91de-3f8d717d3aff",
+      "image": "/uploads/169546db-b4f4-4b1d-91de-3f8d717d3aff.png",
+      "type": "image",
+      "status": "approved",
+      "likes": 0,
+      "caption": "Triple Excellent ✨ #EIWA",
+      "comments": [],
+      "time": "JUST NOW",
+      "createdAt": "2026-06-17T09:31:17.601Z"
+    },
+    {
+      "id": "p1",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image1.png",
+      "type": "carousel",
+      "status": "approved",
+      "likes": 21430,
+      "caption": "Three decades. One obsession: the perfect polish.\nFor 30 years, we've shaped the world's highest-value diamonds — where trust is cut as precisely as the stone itself. ✨\n#DiamondPolishing #30YearsOfTrust #EIWA #LuxuryDiamonds #JapaneseCraftsmanship",
+      "comments": [
+        {
+          "user": "maison.lumiere",
+          "text": "thirty years of pure craft 🤍",
+          "verified": true
+        },
+        {
+          "user": "rough.and.fire",
+          "text": "the standard everyone measures against",
+          "verified": false
+        }
+      ],
+      "time": "2 HOURS AGO"
+    },
+    {
+      "id": "p2",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/image%202.png",
+      "type": "image",
+      "status": "approved",
+      "likes": 18760,
+      "caption": "Consistently achieving Triple Excellent.\nCut. Polish. Symmetry. When all three reach Excellent, light has nowhere to hide. This is the standard we never compromise. 💎\n#3EX #TripleExcellent #DiamondCut #BrillianceRedefined #EIWA",
+      "comments": [
+        {
+          "user": "gem.optics",
+          "text": "light has nowhere to hide — perfectly said",
+          "verified": false
+        }
+      ],
+      "time": "6 HOURS AGO"
+    },
+    {
+      "id": "p3",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image3.png",
+      "type": "carousel",
+      "status": "approved",
+      "likes": 24510,
+      "caption": "The world stops at 3EX. We begin there.\nOur craftsmen pursue a level of precision the grading charts don't even measure. 200× fewer polishing marks. 10–20× more light return.\n#BeyondStandard #DiamondScience #PrecisionPolishing #EIWA #FineJewelry",
+      "comments": [
+        {
+          "user": "carat.science",
+          "text": "200× fewer marks is wild 🔬",
+          "verified": true
+        }
+      ],
+      "time": "1 DAY AGO"
+    },
+    {
+      "id": "p4",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image4.png",
+      "type": "reel",
+      "status": "approved",
+      "likes": 33980,
+      "views": 286000,
+      "caption": "A second life, a brighter shine.\nOur recutting service revives tired or dated stones — restoring fire that time and old cuts had dimmed.\n#DiamondRecutting #Restoration #SecondLife #EIWA #DiamondExperts",
+      "comments": [],
+      "time": "1 DAY AGO"
+    },
+    {
+      "id": "p5",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image5.png",
+      "type": "carousel",
+      "status": "approved",
+      "likes": 15240,
+      "caption": "Cuts inspired by Japanese aesthetics.\nBeyond the standard round — bespoke cuts born from the quiet discipline of Japanese design. 🌸\n#OriginalCut #JapaneseAesthetics #BespokeDiamonds #EIWA #ArtOfTheCut",
+      "comments": [],
+      "time": "2 DAYS AGO"
+    },
+    {
+      "id": "p6",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/image%206.png",
+      "type": "image",
+      "status": "approved",
+      "likes": 12880,
+      "caption": "Exceptional craftsmen, backed by 30 years of trust.\nEvery facet passes through experienced hands. Machines measure — masters decide.\n#MasterCraftsman #DiamondPolisher #Handcrafted #EIWA #Artisan",
+      "comments": [],
+      "time": "2 DAYS AGO"
+    },
+    {
+      "id": "p7",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image%207.png",
+      "type": "reel",
+      "status": "approved",
+      "likes": 28640,
+      "views": 211000,
+      "caption": "From rough selection to final polish.\nThe journey of a diamond is decided long before the first cut — it begins with choosing the right rough.\n#RoughDiamond #DiamondJourney #FromRoughToFinal #EIWA #DiamondPolishing",
+      "comments": [],
+      "time": "3 DAYS AGO"
+    },
+    {
+      "id": "p8",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image%208.png",
+      "type": "image",
+      "status": "approved",
+      "likes": 19320,
+      "caption": "\"God resides in the details.\"\nA single polishing mark, invisible to most, is everything to us. Perfection lives in what you cannot see.\n#InTheDetails #Perfection #DiamondPolishing #EIWA #LuxuryCraft",
+      "comments": [],
+      "time": "4 DAYS AGO"
+    },
+    {
+      "id": "p9",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image%209.png",
+      "type": "image",
+      "status": "approved",
+      "likes": 17100,
+      "caption": "Trusted by the world's diamond institutions.\nFrom our factories to global vaults — the standard that the industry's most demanding partners rely on.\n#TrustedWorldwide #DiamondInstitutions #GlobalStandard #EIWA #FineDiamonds",
+      "comments": [],
+      "time": "5 DAYS AGO"
+    },
+    {
+      "id": "p10",
+      "image": "https://ik.imagekit.io/xanalia/xana/diamond/Image%2010.png",
+      "type": "image",
+      "status": "approved",
+      "likes": 22480,
+      "caption": "The value of a diamond is determined by its polish.\nEntrust your diamonds to us — and let their true light be revealed. ✨\n#DiamondValue #ThePolishMatters #EntrustYourDiamonds #EIWA #30YearsOfTrust",
+      "comments": [],
+      "time": "6 DAYS AGO"
+    }
+  ]
+}
